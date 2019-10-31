@@ -48,6 +48,7 @@ import FlyGameMove2 from "./game/move/FlyGameMove2";
 import TestCookie from "./gameCookie/TestCookie";
 import WXCookie from "./gameCookie/WXCookie";
 import { BaseCookie } from "./gameCookie/BaseCookie";
+import Session from "./main/Session";
 
 class Main {
 	constructor() {
@@ -137,10 +138,14 @@ class Main {
 
 	private loading: ui.test.LoadingUI;
 	private onHandler(): void {
-		let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
-		new BP().checkUpdate();
+	//	let BP = Laya.ClassUtils.getRegClass("p" + App.platformId);
+	//	new BP().checkUpdate();
 
-		new LoginHttp(new Laya.Handler(this, this.onSuccess)).checkLogin();
+	//	new LoginHttp(new Laya.Handler(this, this.onSuccess)).checkLogin();
+		Session.parseData("0");
+		
+		new GameMain();
+		this.loading.removeSelf();
 	}
 
 	private onSuccess(data): void {
